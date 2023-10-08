@@ -6,15 +6,506 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 
 */
+:root.theme-dark {
+  --font-weight-text: 465;
+  --font-weight-title: 785;
+  --background-color: #000;
+  --color: #00cc14;
+  --button-text-color-opposite: #00cc14;
+  --gradient-color-one: #000;
+  --gradient-color-two: #007f0c;
+  --gradient-color-three: #004306;
+  --stroke-color: #000;
+}
 
+:root.theme-light {
+  --font-weight-text: 400;
+  --font-weight-title: 700;
+  --background-color: #fff;
+  --color: #000;
+  --button-text-color-opposite: #fff;
+  --gradient-color-one: #d3d3d3;
+  --gradient-color-two: #e7e7e7;
+  --gradient-color-three: #1a1a1a;
+  --stroke-color: #fff;
+}
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  background-image: var(--background-image);
+  background-color: var(--background-color);
+  font-weight: var(--font-weight-text);
+  color: var(--color);
+  font-family: var(--main-font);
+  background-image: repeating-linear-gradient(
+      0,
+      var(--gradient-color-one),
+      transparent 4px
+    ),
+    repeating-linear-gradient(90deg, var(--gradient-color-one), transparent 4px),
+    linear-gradient(var(--gradient-color-two), var(--gradient-color-three));
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  inline-size: clamp(
+    320px,
+    clamp(23.4375rem, 16.3732rem + 30.1408vw, 43.5rem),
+    696px
+  );
+  margin: 102px auto 104px;
+  background-color: var(--background-color);
+  border: 2px solid var(--color);
+}
+
+.header__title {
+  font-family: var(--accent-font);
+  font-size: clamp(3rem, 2.6964rem + 1.5179vw, 4.0625rem);
+  padding-block-end: 20px;
+  padding-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
+}
+
+.header__subtitle {
+  font-family: var(--accent-font);
+  font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+  text-transform: uppercase;
+}
+
+.theme-menu {
+}
+
+.header__theme-menu {
+  padding-block-start: 25px;
+  padding-block-end: 25px;
+}
+
+.theme-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.theme-menu__item .theme-menu__button {
+  background-color: var(--background-color);
+  border: none;
+  font-size: 14px;
+  font-family: var(--accent-font);
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.theme-menu__button {
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.theme-menu__button:disabled::before {
+  content: "▶";
+  color: var(--color);
+  position: absolute;
+  margin-inline-start: -20px;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: move 0.5s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes move {
+  100% {
+    transform: translateX(4px);
+  }
+}
+
+.theme-menu__button:hover {
+  opacity: 0.6;
+}
+
+.theme-menu__button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.theme-menu__button:hover {
+  cursor: pointer;
+}
+
+.theme-menu__button:focus {
+  outline: none;
+  opacity: 0.6;
+}
+
+.theme-menu__button::after {
+  content: "";
+  display: block;
+  inline-size: 0%;
+  block-size: 2px;
+  margin-top: 2px;
+  background-color: var(--color);
+  transition: none;
+}
+
+.theme-menu__button:focus-visible::after {
+  inline-size: 100%;
+  transition: inline-size 0.3s;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  inline-size: clamp(
+    320px,
+    clamp(23.4375rem, 16.3732rem + 30.1408vw, 43.5rem),
+    696px
+  );
+  background-color: var(--background-color);
+  border: 2px solid var(--color);
+}
+
+.card__title {
+  padding: 3px 10px;
+  font-size: var(--font-size);
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-title);
+}
+
+.card__image-area {
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  border-top: 2px solid var(--color);
+  border-bottom: 2px solid var(--color);
+  background-color: white;
+  position: relative;
+  display: flex;
+}
+
+.card__image-area__image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.card__image-area__label {
+  position: absolute;
+  font-family: var(--accent-font);
+  color: var(--color);
+  opacity: 0.5;
+  text-transform: uppercase;
+  top: 25px;
+  right: 25px;
+  mix-blend-mode: hard-light;
+  text-shadow: -1px 0 var(--stroke-color), 0 1px var(--stroke-color),
+    1px 0 var(--stroke-color), 0 -1px var(--stroke-color);
+}
+
+@supports (
+  (text-stroke: 1px var(--stroke-color)) or
+    (-webkit-text-stroke: 1px var(--stroke-color))
+) {
+  p.card__image-area__label {
+    -webkit-text-stroke: 1px var(--stroke-color);
+    text-stroke: 1px var(--stroke-color);
+    text-shadow: none;
+  }
+}
+
+.card__text-area {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  gap: 27px;
+}
+
+.card__text-area__paragraph {
+  font-size: var(--font-size);
+  font-family: var(--main-font);
+  font-weight: var(--font-weight-text);
+}
+
+.card__button-area {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 12px;
+}
+
+.card__icon-button {
+  background-color: inherit;
+  border: none;
+  color: var(--color);
+  /* border: 2px solid transparent; */
+  cursor: pointer;
+}
+
+.card__icon-button:focus-visible {
+  outline: 2px solid var(--color);
+  transition: outline 0.3s ease;
+}
+
+/* .card__icon-button:focus {
+  outline: none;
+} */
+
+.like-icon__core {
+  transition: fill 0.03s;
+}
+.like-icon:hover .like-icon__core {
+  fill: var(--color);
+  transition: fill 0.3s;
+}
+
+.like-icon:active .like-icon__core {
+  fill: #ff0000;
+  transition: fill 0.3s;
+}
+
+.like-icon__main-body {
+  transition: fill 0.3s;
+}
+.like-icon:hover .like-icon__main-body {
+  fill: var(--color);
+  transition: fill 0.3s 0.05s;
+}
+.like-icon:active .like-icon__main-body {
+  fill: #ff0000;
+  transition: fill 0.3s;
+}
+
+.like-icon.is-liked .like-icon__core {
+  fill: #ff0000;
+  transition: fill 0.3s;
+}
+.like-icon.is-liked .like-icon__main-body {
+  fill: #ff0000;
+  transition: fill 0.3s 0.03s;
+}
+
+.like-icon.is-liked .like-icon__contur {
+  fill: #ff0000;
+  transition: fill 0.3s 0.06s;
+}
+
+.like-icon.is-liked {
+  animation: zoom 0.3s 0.1s ease-in;
+}
+
+@keyframes zoom {
+  to {
+    transform: scale(1.5);
+  }
+}
+
+.like-icon__sparks {
+  opacity: 0;
+}
+
+.like-icon.is-liked .like-icon__sparks {
+  animation: erase 0.3s 0.3s ease-in;
+}
+
+@keyframes erase {
+  to {
+    opacity: 1;
+  }
+}
+
+.card__like-button {
+  inline-size: 130px;
+  block-size: 38px;
+  padding: 9px 17px;
+  border: 2px solid var(--color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+  background-color: var(--background-color);
+  overflow: hidden;
+  color: var(--button-text-color-opposite);
+  cursor: pointer;
+}
+
+.button__text {
+  font-family: var(--accent-font);
+  font-weight: 400;
+  font-size: 14px;
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+}
+
+.save-button {
+  border: 2px solid var(--color);
+  inline-size: 339px;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--background-color);
+  margin: 54px auto 104px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: var(--button-text-color-opposite);
+  z-index: 0;
+}
+
+.save-button__foppy-icon {
+  inline-size: 100%;
+  block-size: 100%;
+  position: relative;
+  z-index: 2;
+  mix-blend-mode: difference;
+}
+
+.card__like-button::before,
+.save-button::before {
+  content: "";
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  translate: -100%;
+  transition: all 0.5s ease-in-out;
+  background-color: var(--color);
+  z-index: 1;
+}
+
+.card__like-button:hover::before,
+.save-button:hover::before {
+  translate: 0%;
+}
+
+.card__like-button:focus,
+.save-button:focus {
+  box-shadow: 4px 4px 0 0 var(--color);
+}
+
+.dialog {
+  background-color: var(--background-color);
+  color: var(--color);
+  inline-size: 357px;
+  block-size: 193px;
+  border: 2px solid var(--color);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: calc((100vh -193px) / 2);
+  position: fixed;
+  inset: 0;
+}
+
+.dialog__info-area {
+  display: flex;
+  gap: 20px;
+}
+
+.dialog__foppy-icon {
+  inline-size: 39px;
+  block-size: 39px;
+}
+
+.dialog__text {
+  font-family: var(--accent-font);
+  color: var(--color);
+  font-weight: var(--font-weight-text);
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 150%;
+}
+
+.dialog__button {
+  font-family: var(--accent-font);
+  color: var(--color);
+  font-weight: var(--font-weight-text);
+  font-size: 14px;
+  inline-size: 100%;
+  block-size: 38px;
+  background-color: inherit;
+  padding: 9px 17px;
+  border: 2px solid var(--color);
+  cursor: pointer;
+}
+
+.dialog:not([open]) {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.3);
+  backdrop-filter: blur(7px);
+}
+
+@media (inline-size <=375px) {
+  .header,
+  .card {
+    inline-size: 100vw;
+  }
+
+  .header__title {
+    font-size: clamp(2.8125rem, 1.358rem + 7.2727vw, 3.0625rem);
+  }
+
+  .save-button {
+    inline-size: 306px;
+    padding: 15px 20px;
+    flex-direction: column;
+  }
+
+  .card__image-area__label {
+    right: 11px;
+  }
+
+  .dialog {
+    inline-size: 341px;
+    block-size: 195px;
+  }
+}
+
+.brightness {
+  filter: brightness(200%);
+}
+
+.saturate {
+  filter: saturate(158%);
+}
+
+.hue-rotate {
+  filter: hue-rotate(-90deg);
+}
+
+.sepia {
+  filter: sepia(80%);
+}
+
+.invert {
+  filter: invert(0.7);
+}
+
+.contrast {
+  filter: contrast(250%);
+}
+
+.grayscale {
+  filter: grayscale(90%);
 }

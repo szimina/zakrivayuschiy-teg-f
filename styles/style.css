@@ -1,25 +1,8 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
-*/
-
 .page {
-  min-inline-size: 320px;
-  min-block-size: 100dvb;
-  background-color: var(--background-color);
-  font-weight: var(--font-weight-text);
   color: var(--color);
   font-family: var(--main-font);
+  font-weight: var(--font-weight-text);
+  background-color: var(--background-color);
   background-image: repeating-linear-gradient(
       0,
       var(--gradient-color-one),
@@ -31,23 +14,25 @@
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  min-inline-size: 320px;
+  min-block-size: 100dvb;
 }
 
 .header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  inline-size: clamp(364px, 16.0352rem + 30.5164vw, 696px);
   margin: 100px auto;
-  background-color: var(--background-color);
   border: 2px solid var(--color);
+  background-color: var(--background-color);
+  inline-size: clamp(364px, 16.0352rem + 30.5164vw, 696px);
 }
 
 .header__logo {
+  padding-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
+  padding-block-end: 20px;
   font-family: var(--accent-font);
   font-size: clamp(3rem, 2.6964rem + 1.5179vw, 4.0625rem);
-  padding-block-end: 20px;
-  padding-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
 }
 
 .header__title {
@@ -57,9 +42,9 @@
 }
 
 .header__theme-menu {
+  padding-inline-start: 14px;
   padding-block-start: 25px;
   padding-block-end: 25px;
-  padding-inline-start: 14px;
 }
 
 .theme-menu__list {
@@ -68,29 +53,29 @@
   gap: 14px;
 }
 .theme-menu__item {
-  height: 14px;
+  block-size: 14px;
 }
 
 .theme-menu__button {
-  background-color: var(--background-color);
+  block-size: 100%;
   border: none;
-  font-size: 14px;
   font-family: var(--accent-font);
   font-weight: 400;
+  font-size: 14px;
   text-transform: uppercase;
-  appearance: none;
+  background-color: var(--background-color);
   transition: opacity 0.3s ease;
   cursor: pointer;
-  height: 100%;
+  appearance: none;
 }
 
 .theme-menu__button:disabled::before {
   content: "▶";
-  color: var(--color);
   position: absolute;
   margin-inline-start: -20px;
-  pointer-events: none;
+  color: var(--color);
   animation: move 0.5s infinite alternate ease-in-out;
+  pointer-events: none;
 }
 
 .theme-menu__button:hover {
@@ -110,16 +95,16 @@
 .theme-menu__button::after {
   content: "";
   display: block;
-  inline-size: 0%;
-  block-size: 2px;
   margin-top: 2px;
   background-color: var(--color);
   transition: none;
+  inline-size: 0%;
+  block-size: 2px;
 }
 
 .theme-menu__button:focus-visible::after {
-  inline-size: 100%;
   transition: inline-size 0.3s;
+  inline-size: 100%;
 }
 
 .cards {
@@ -130,41 +115,41 @@
 }
 
 .card {
-  block-size: 100%;
 
   display: flex;
   flex-direction: column;
+  border: 2px solid var(--color);
+  background-color: var(--background-color);
+  block-size: 100%;
   inline-size: clamp(
     320px,
     clamp(23.4375rem, 16.3732rem + 30.1408vw, 43.5rem),
     696px
   );
-  background-color: var(--background-color);
-  border: 2px solid var(--color);
 }
 
 .card__title {
   padding: 5px 10px;
-  font-size: var(--font-size);
   font-family: var(--main-font);
   font-weight: var(--font-weight-title);
+  font-size: var(--font-size);
 }
 
 .card__image-area {
-  inline-size: 100%;
-  aspect-ratio: 1 / 1;
+  position: relative;
+  display: flex;
   border-top: 2px solid var(--color);
   border-bottom: 2px solid var(--color);
   background-color: var(--background-color);
-  position: relative;
-  display: flex;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .card__image-area__image {
-  inline-size: 100%;
-  block-size: 100%;
   object-fit: cover;
   object-position: center;
+  inline-size: 100%;
+  block-size: 100%;
 }
 
 .card__image-area__image_brightness {
@@ -197,40 +182,37 @@
 
 .card__image-area__label {
   position: absolute;
-  font-family: var(--accent-font);
-  color: var(--color);
-  opacity: 0.5;
-  text-transform: uppercase;
   top: 25px;
   right: 25px;
-  mix-blend-mode: hard-light;
+  opacity: 0.5;
+  color: var(--color);
+  font-family: var(--accent-font);
+  text-transform: uppercase;
   text-shadow: -1px 0 var(--stroke-color), 0 1px var(--stroke-color),
     1px 0 var(--stroke-color), 0 -1px var(--stroke-color);
+  mix-blend-mode: hard-light;
 }
 
-@supports (
-  (text-stroke: 1px var(--stroke-color)) or
-    (-webkit-text-stroke: 1px var(--stroke-color))
-) {
+@supports ((text-stroke: 1px var(--stroke-color)) or (-webkit-text-stroke: 1px var(--stroke-color))) {
   .card__image-area__label {
+    text-shadow: none;
     -webkit-text-stroke: 1px var(--stroke-color);
     text-stroke: 1px var(--stroke-color);
-    text-shadow: none;
   }
 }
 
 .card__text-area {
   display: flex;
   flex-direction: column;
+  gap: 27px;
   margin-block-start: 2px;
   padding: 25px;
-  gap: 27px;
 }
 
 .card__text-area__paragraph {
-  font-size: var(--font-size);
   font-family: var(--main-font);
   font-weight: var(--font-weight-text);
+  font-size: var(--font-size);
 }
 
 .card__text-area__paragraph_line-through {
@@ -246,9 +228,9 @@
 }
 
 .card__icon-button {
-  background-color: transparent;
   border: none;
   color: var(--color);
+  background-color: transparent;
   cursor: pointer;
 }
 
@@ -319,13 +301,13 @@
 
 .button {
   position: relative;
+  z-index: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 2px solid var(--color);
   overflow: hidden;
   background-color: var(--background-color);
-  z-index: 0;
   cursor: pointer;
   appearance: none;
 }
@@ -333,12 +315,12 @@
 .button::before {
   content: "";
   position: absolute;
+  z-index: 1;
+  background-color: var(--color);
+  transition: transform 0.5s ease-in-out;
+  transform: translate(-100%);
   inline-size: 100%;
   block-size: 100%;
-  transform: translate(-100%);
-  transition: transform 0.5s ease-in-out;
-  background-color: var(--color);
-  z-index: 1;
 }
 
 .button:hover::before {
@@ -351,87 +333,89 @@
 
 .button__text {
   position: relative;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 90%;
+  z-index: 2; 
+  color: var(--button-text-color-opposite);
   font-family: var(--accent-font);
-  z-index: 2;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 90%;
   mix-blend-mode: difference; 
-  color: var(--button-text-color-opposite); 
 }
 
 .card__like-button {
+  padding: 9px 17px;
   inline-size: 130px;
   block-size: 38px;
-  padding: 9px 17px;
 }
 
 .save-button {
-  inline-size: 339px;
-  padding: 15px 20px;
   gap: 8px;
   margin: 0 auto 104px;
+  padding: 15px 20px;
+  inline-size: 339px;
 }
 
 .save-button__floppy-icon {
-  width: 21px;
-  height: 21px;
   position: relative;
   z-index: 2;
-  mix-blend-mode: difference;
+  inline-size: 21px;
+  block-size: 21px;
   color: var(--button-text-color-opposite);
+  mix-blend-mode: difference;
 }
 
 .dialog {
-  background-color: var(--background-color);
-  color: var(--color);
-  inline-size: 357px;
-  block-size: 193px;
-  border: 2px solid var(--color);
   padding: 0;
+  color: var(--color);
+  background-color: var(--background-color);
+  border: none;
 }
 
 .dialog__form {
-  padding: 30px;
+  border: 2px solid var(--color); 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  block-size: 100%;
+  padding: 30px;
+  inline-size: 357px;
+  block-size: 193px;
 }
 
 .dialog__form__info-area {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 
-.dialog__form__floppy-icon {
-  inline-size: 21px;
-  block-size: 21px;
+
+.dialog__form__info-area__floppy-icon {
+  inline-size: 39px;
+  block-size: 39px;
 }
 
 .dialog__form__text {
-  font-family: var(--accent-font);
   color: var(--color);
+  font-family: var(--accent-font);
   font-weight: var(--font-weight-text);
   font-size: 14px;
-  text-transform: uppercase;
   line-height: 150%;
+  text-transform: uppercase;
 }
 
 .dialog__form__button {
-  inline-size: 100%;
-  height: 38px;
+  block-size: 38px;
   padding: 9px 17px;
+  inline-size: 100%;
 }
 
 .dialog:not([open]) {
-  pointer-events: none;
   opacity: 0;
+  pointer-events: none;
 }
 
 .dialog::backdrop {
-  background-color: #000;
   opacity: 0.75;
+  background-color: #000;
 }
 
 @media (width <=375px) {
@@ -450,8 +434,8 @@
   }
 
   .save-button {
-    inline-size: 310px;
     flex-direction: column;
+    inline-size: 310px;
   }
 
   .card__image-area__label {
@@ -459,9 +443,16 @@
   }
 
   .save-button__floppy-icon {
-    width: 28px;
-    height: 28px;
+    inline-size: 28px;
+    block-size: 28px;
   }
+
+  .dialog__form {
+    inline-size: clamp(15.75rem, -15.1591rem + 154.5455vw, 21.0625rem);
+    block-size: 195px;
+    padding: clamp(1.25rem, -2.3864rem + 18.1818vw, 1.875rem);
+  }
+  
 
 }
 

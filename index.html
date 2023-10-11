@@ -78,7 +78,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-1"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -114,7 +114,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-1"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -150,7 +150,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-2"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -186,7 +186,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-2"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -219,7 +219,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-3"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -255,7 +255,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-3"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -291,7 +291,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-4"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -327,7 +327,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-4"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -363,7 +363,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-5"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -399,7 +399,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-5"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -432,7 +432,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-6"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -468,7 +468,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-6"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -507,7 +507,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-7"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -543,7 +543,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-7"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -578,7 +578,7 @@
               <button
                 type="button"
                 class="card__icon-button"
-                aria-labelledby="like-button"
+                aria-labelledby="like-button-8"
               >
                 <svg
                   viewBox="0 0 39 36"
@@ -614,7 +614,7 @@
               <button
                 class="button card__like-button"
                 type="button"
-                id="like-button"
+                id="like-button-8"
               >
                 <span class="button__text">Like</span>
               </button>
@@ -629,31 +629,34 @@
           onclick="window['dialog-id'].showModal();"
           aria-controls="dialog-id"
         >
-          <svg aria-hidden="true" class="save-button__floppy-icon">
-            <use href="./svg/floppy.svg#floppy"></use>
-          </svg>
+            <svg aria-hidden="true" class="save-button__floppy-icon">
+              <use href="./svg/floppy.svg#floppy"></use>
+            </svg>
           <span class="button__text">Сохранить на память</span>
         </button>
       </section>
+
+      <dialog id="dialog-id" class="dialog">
+        <form class="dialog__form">
+          <div class="dialog__form__info-area">
+              <div>
+                <svg aria-hidden="true" class="dialog__form__info-area__floppy-icon">
+                  <use href="./svg/floppy.svg#floppy"></use>
+                </svg>
+              </div>
+              <p class="dialog__form__text">Вставьте дискету, чтобы продолжить</p>
+          </div>
+          <button
+            type="button"
+            onclick="window['dialog-id'].close()"
+            class="button dialog__form__button"
+            aria-controls="dialog-id"
+          >
+            <span class="button__text">OK</span>
+          </button>
+        </form>
+      </dialog>
     </main>
-    <dialog id="dialog-id" class="dialog">
-      <form class="dialog__form">
-        <div class="dialog__form__info-area">
-          <svg aria-hidden="true" class="dialog__form__floppy-icon">
-            <use href="./svg/floppy.svg#floppy"></use>
-          </svg>
-          <p class="dialog__form__text">Вставьте дискету, чтобы продолжить</p>
-        </div>
-        <button
-          type="button"
-          onclick="window['dialog-id'].close()"
-          class="button dialog__form__button"
-          aria-controls="dialog-id"
-        >
-          <span class="button__text">OK</span>
-        </button>
-      </form>
-    </dialog>
     <script src="./scripts/like.js"></script>
   </body>
 </html>

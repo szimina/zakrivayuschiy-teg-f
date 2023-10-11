@@ -12,3 +12,21 @@
 
 Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
 */
+
+@keyframes move {
+  100% {
+    margin-inline-start: -16px;
+  }
+}
+
+@keyframes zoom {
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes erase {
+  to {
+    opacity: 1;
+  }
+}

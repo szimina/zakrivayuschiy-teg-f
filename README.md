@@ -1,1 +1,1 @@
-Проект "Завершающий тег" https://github.com/szimina/zakrivayuschiy-teg-f
+Проект "Завершающий тег" https://szimina.github.io/zakrivayuschiy-teg-f/)https://szimina.github.io/zakrivayuschiy-teg-f/

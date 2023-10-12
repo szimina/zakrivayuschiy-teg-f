@@ -1,19 +1,16 @@
 .page {
   color: var(--color);
   font-family: var(--main-font);
-  font-weight: var(--font-weight-text);
   background-color: var(--background-color);
-  background-image: repeating-linear-gradient(
-      0,
-      var(--gradient-color-one),
-      transparent 4px
-    ),
-    repeating-linear-gradient(90deg, var(--gradient-color-one), transparent 4px),
-    linear-gradient(var(--gradient-color-two), var(--gradient-color-three));
+  background-image: 
+    repeating-linear-gradient( to right, var(--gradient-color-one) 0 2px, transparent 2px 4px ), 
+    repeating-linear-gradient( to bottom, var(--gradient-color-one) 0 2px, transparent 2px 4px ), 
+    linear-gradient(to bottom, var(--gradient-color-two), var(--gradient-color-three));
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
+  font-variation-settings: "wght" var(--font-weight-text);
   min-inline-size: 320px;
   min-block-size: 100dvb;
 }
@@ -24,6 +21,7 @@
   align-items: center;
   margin: 100px auto;
   border: 2px solid var(--color);
+  padding-block-end: 20px;
   background-color: var(--background-color);
   inline-size: clamp(364px, 16.0352rem + 30.5164vw, 696px);
 }
@@ -36,6 +34,7 @@
 }
 
 .header__title {
+  padding-block-end: 23px;
   font-family: var(--accent-font);
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   text-transform: uppercase;
@@ -43,21 +42,15 @@
 
 .header__theme-menu {
   padding-inline-start: 14px;
-  padding-block-start: 25px;
-  padding-block-end: 25px;
 }
 
 .theme-menu__list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-}
-.theme-menu__item {
-  block-size: 14px;
+  gap: 8px;
 }
 
 .theme-menu__button {
-  block-size: 100%;
   border: none;
   font-family: var(--accent-font);
   font-weight: 400;
@@ -66,6 +59,7 @@
   background-color: var(--background-color);
   transition: opacity 0.3s ease;
   cursor: pointer;
+  block-size: 100%;
   appearance: none;
 }
 
@@ -115,7 +109,6 @@
 }
 
 .card {
-
   display: flex;
   flex-direction: column;
   border: 2px solid var(--color);
@@ -131,8 +124,8 @@
 .card__title {
   padding: 5px 10px;
   font-family: var(--main-font);
-  font-weight: var(--font-weight-title);
   font-size: var(--font-size);
+  font-variation-settings: "wght" var(--font-weight-title);
 }
 
 .card__image-area {
@@ -211,8 +204,8 @@
 
 .card__text-area__paragraph {
   font-family: var(--main-font);
-  font-weight: var(--font-weight-text);
   font-size: var(--font-size);
+  font-variation-settings: "wght" var(--font-weight-text);
 }
 
 .card__text-area__paragraph_line-through {
@@ -328,6 +321,10 @@
 }
 
 .button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
   box-shadow: 2px 2px 0 0 var(--color);
 }
 
@@ -358,33 +355,37 @@
 .save-button__floppy-icon {
   position: relative;
   z-index: 2;
+  color: var(--button-text-color-opposite);
   inline-size: 21px;
   block-size: 21px;
-  color: var(--button-text-color-opposite);
   mix-blend-mode: difference;
 }
 
 .dialog {
-  padding: 0;
-  color: var(--color);
-  background-color: var(--background-color);
-  border: none;
-}
-
-.dialog__form {
-  border: 2px solid var(--color); 
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border: none;
+  border: 2px solid var(--color);
+  padding: 0;
   padding: 30px;
+  color: var(--color);
+  background-color: var(--background-color); 
   inline-size: 357px;
   block-size: 193px;
+
+
+}
+
+.dialog__form {
+  display: flex;
+  justify-content: space-between;
 }
 
 .dialog__form__info-area {
   display: flex;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
 }
 
 
@@ -403,8 +404,8 @@
 }
 
 .dialog__form__button {
-  block-size: 38px;
   padding: 9px 17px;
+  block-size: 38px;
   inline-size: 100%;
 }
 
@@ -414,8 +415,7 @@
 }
 
 .dialog::backdrop {
-  opacity: 0.75;
-  background-color: #000;
+  background-color: rgba(0 0 0 / 0.75);
 }
 
 @media (width <=375px) {
@@ -447,10 +447,10 @@
     block-size: 28px;
   }
 
-  .dialog__form {
+  .dialog {
+    padding: clamp(1.25rem, -2.3864rem + 18.1818vw, 1.875rem);
     inline-size: clamp(15.75rem, -15.1591rem + 154.5455vw, 21.0625rem);
     block-size: 195px;
-    padding: clamp(1.25rem, -2.3864rem + 18.1818vw, 1.875rem);
   }
   
 
